@@ -1,0 +1,59 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import 'bootstrap/theme';
+
+
+html {
+	background: image-url("24183752106_a948958a21_o.jpg") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+body {
+	padding-top: 100px;
+	font-size: 16px;
+	background: transparent;
+}
+
+h1 {
+	font-weight: 400;
+	font-size: 40px;
+}
+
+
+.panel {
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+.margin-base-vertical {
+	margin: 20px 0;
+}
+
+.list-group-item {
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+}
+
+.v-align {
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+}

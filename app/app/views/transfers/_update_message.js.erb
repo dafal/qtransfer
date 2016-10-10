@@ -1,0 +1,3 @@
+$("#message_<%= transfer.id %>").replaceWith('<%=  escape_javascript(render :partial => 'message',:handlers => [:erb], :formats => [:html],:locals => {:transfer => transfer}) %>');
+
+<%= render :partial => 'common_message' ,:handlers => [:erb], :formats => [:js],:locals => {:transfer => transfer} %>

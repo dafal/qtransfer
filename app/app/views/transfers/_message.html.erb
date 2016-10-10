@@ -1,0 +1,24 @@
+<% if transfer.scan_background %>
+<% info = "Background scan, refresh to see result" %>
+<li class="list-group-item small list-group-item-default" id="message_<%= transfer.id %>" title="<%= info %>"><%= escape_javascript truncate(transfer.file_name) %><span class="pull-right"><button class="btn btn-default btn-xs" disabled="disabled">Scanning...</button></span></li></li>
+<% elsif transfer.vt_malicious or transfer.scan_malicious %>
+<%
+if transfer.vt_malicious
+	info = escape_javascript(transfer.vt_detections.to_s) + " detection(s)"  + " (VirusTotal)"
+elsif transfer.scan_malicious
+	info = "Virus detected (ClamAV) : #{transfer.scan_result}"
+end
+%>
+<li class="list-group-item small list-group-item-danger" id="message_<%= transfer.id %>" title="<%= info %>"><%= escape_javascript truncate(transfer.file_name) %><span class="pull-right"><button class="btn btn-danger btn-xs" disabled="disabled">Malicious</button></span></li>
+<% elsif (transfer.vt_status and transfer.vt_malicious != nil) or transfer.scan_status %>
+<%
+if transfer.vt_status and transfer.vt_malicious != nil
+	info = "Known non-malicious file (VirusTotal)"
+elsif transfer.scan_status
+	info = "No virus detected (ClamAV)"
+end
+%>
+	<li class="list-group-item small list-group-item-default" id="message_<%= transfer.id %>" title="<%= info %>"><%= escape_javascript truncate(transfer.file_name) %> <small>(<%= number_to_human_size transfer.file_size %>)</small><span class="pull-right"><button class="btn btn-primary btn-xs" id="btn_clip_<%= transfer.id %>" data-clipboard-text="<%= escape_javascript polymorphic_url(Transfer) + "/" + transfer.token %>">Copy link</button></span></li>
+<% else %>
+	<li class="list-group-item small list-group-item-danger" id="message_<%= transfer.id %>" title="<%= info %>"><%= escape_javascript truncate(transfer.file_name) %><span class="pull-right"><button class="btn btn-danger btn-xs" disabled="disabled" title="<%= @error.to_s %>">Error</button></span></li>
+<% end %>

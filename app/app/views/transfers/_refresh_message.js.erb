@@ -1,0 +1,6 @@
+$(document).ready(
+         function() {
+          refresh_<%= transfer.id %> = setInterval(function() {
+			$.getScript('/transfers/update_message/<%= transfer.id %>');
+        }, 5000);
+});

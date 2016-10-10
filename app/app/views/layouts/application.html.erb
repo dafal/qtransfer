@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quick Transfer</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= include_gon %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container">
+  <%= yield %>
+</div>
+
+
+<%= image_tag("beta_ribbon.png",style: "position: absolute; top: 0; right: 0; border: 0;",title: "Quick Transfer v" + Rails.configuration.app_version) %>
+
+
+<div id="videoModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Quick Start video</h4>
+			</div>
+			<div class="modal-body">
+				<div class="text-center">
+					<%= video_tag("qs.mp4", :size => "570x320", :controls => false, :id => "qs_video", :autoplay => false) %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<% if @quick_start == true  %>
+<script type="text/javascript">
+    $(window).load(function(){
+        $('#videoModal').modal('show');
+    });
+</script>
+<% end %>
+<script>
+	$('#videoModal').on('shown.bs.modal', function() {
+		var video = document.getElementById("qs_video");
+	    video.currentTime = 0;
+		video.play();
+	})
+</script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<div class="row">
+	<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3  col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 panel panel-default">
+		<h1 class="margin-base-vertical text-center">Drop your files here !</h1>
+		
+		<p>The files will be scanned and if not malicious, you will get a link which can be used to download the file from anywhere else.</p>
+		<p>Maximum <%= number_to_human_size(eval(Rails.configuration.x.app_config['maximum_file_size'])) %> per file.  Files kept for  <%= distance_of_time_in_words_to_now(eval(Rails.configuration.x.app_config['cleanup'])) %>.</p>
+		<br>
+		<%= form_for @transfer do |f| %>
+	  	<p class="text-center">
+		<span class="btn btn-primary btn-sm fileinput-button v-align">
+		  <i class="glyphicon glyphicon-plus"></i>
+		  <span>Select files...</span>
+		  <input id="new_transfer" type="file" name="transfer[file]" multiple>
+	  	</span>
+		<p/>
+	  <div class="progress progress-wrapper" id="progress-wrapper">
+		  <div class="progress-bar progress-bar active" role="progressbar"></div>
+	  </div>
+			
+		<% end %>
+		<span>
+			<ul class="list-group" id="messages">
+				<script type="text/javascript">
+							<% @transfers.each do |t| %>
+								<%= render(:partial => 'append_message', :handlers => [:erb], :formats => [:js], :locals => {:transfer => t}) %>
+							<% end %>
+				</script>
+			</ul>
+			
+		</span>
+		<div class="margin-base-vertical text-right">
+			
+			
+			<small class="text-muted">
+				<%= Rails.configuration.x.app_config['disclaimer'] %> - <a href="<%= Rails.configuration.x.app_config['contact_url'] %>">Contact us</a>
+			</small>
+			<br>
+			<div class="pull-left">
+				<a href="#" data-toggle="modal" data-target="#videoModal"><i class="glyphicon glyphicon-info-sign"></i></a>
+			</div>
+			<small class="text-muted">
+				<a href="https://www.flickr.com/photos/98590749@N07/">Background picture by Milos Golubovic @flickr</a>. Used under <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/">Creative Commons</a>.
+			</small>
+		</div>
+	</div><!-- //main content -->
+</div><!-- //row -->
+

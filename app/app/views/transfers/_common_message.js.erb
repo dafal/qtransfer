@@ -1,0 +1,16 @@
+<% unless transfer.scan_background %>
+try {
+	clearInterval(refresh_<%= transfer.id %>);
+}catch(err){}
+var clip = new Clipboard('#btn_clip_<%= transfer.id %>');
+clip.on('success', function(e) {
+	e.trigger.setAttribute('title', 'Copied!');
+	$('#btn_clip_<%= transfer.id %>').tooltip('show');
+    e.clearSelection();
+	
+});
+clip.on('error', function(e) {
+	e.trigger.setAttribute('title', fallbackMessage(e.action));
+	$('#btn_clip_<%= transfer.id %>').tooltip('show');
+});
+<% end %>

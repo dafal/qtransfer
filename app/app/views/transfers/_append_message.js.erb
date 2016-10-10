@@ -1,0 +1,12 @@
+$("#messages").append('<%=  escape_javascript(render :partial => 'message',:handlers => [:erb], :formats => [:html],:locals => {:transfer => transfer}) %>');
+
+<% if transfer.scan_background %>
+$(document).ready(
+         function() {
+          refresh_<%= transfer.id %> = setInterval(function() {
+			$.getScript('/transfers/update_message/<%= transfer.id %>');
+        }, 5000);
+});
+<% end %>
+
+<%= render :partial => 'common_message' ,:handlers => [:erb], :formats => [:js],:locals => {:transfer => transfer} %>

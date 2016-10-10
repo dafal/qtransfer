@@ -1,0 +1,36 @@
+development:
+  cron: 15.m
+  cleanup: 1.hour.ago
+  synchronous_clamav_scan_limit_size: 1.megabyte
+  maximum_file_size: 100.megabytes
+  clamd_tcp_host: clamav
+  clamd_tcp_port: '3310'
+  vt_api_key: 1234567890AZERTYUIOP
+  vt_check: true
+  secret_key_base: my_super_secret_development_key
+  contact_url: mailto:eric.daras@me.com
+  disclaimer: Service provided by dafal
+test:
+  cron: 1.h
+  cleanup:  15.days.ago
+  synchronous_clamav_scan_limit_size: 50.megabytes
+  maximum_file_size: 2.gigabytes
+  clamd_tcp_host: clamav
+  clamd_tcp_port: '3310'
+  vt_api_key: 1234567890AZERTYUIOP
+  vt_check: true
+  secret_key_base: my_super_secret_test_key
+  contact_url: mailto:eric.daras@me.com
+  disclaimer: Service provided by dafal
+production:
+  cron: 1.h
+  cleanup:  15.days.ago
+  synchronous_clamav_scan_limit_size: 50.megabytes
+  maximum_file_size: 2.gigabytes
+  clamd_tcp_host: clamav
+  clamd_tcp_port: '3310'
+  vt_api_key: 1234567890AZERTYUIOP
+  vt_check: true
+  secret_key_base: my_super_secret_production_key
+  contact_url: mailto:eric.daras@me.com
+  disclaimer: Service provided by dafal

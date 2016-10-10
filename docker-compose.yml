@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  clamav:
+    build:
+        context: ./docker-clamav
+    container_name: qtransfer_clamav
+    restart: always
+  web:
+    build:
+      context: ./app
+    container_name: qtransfer_web
+    ports:
+      - "3000:3000"
+    links:
+      - clamav
+    depends_on:
+      - clamav
+    restart: always
+    environment:
+      - RAILS_ENV=production 
+    volumes:
+      - ./config:/usr/src/app/config # Config files
+      - ./db:/usr/src/app/db/production # Database folder
+      - ./data:/usr/src/app/data/production # Data folder
